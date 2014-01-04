@@ -143,7 +143,7 @@ public class SecurityManagerUtil {
 			if (PropsValues.TCK_URL) {
 				return DEFAULT;
 			}
-			else if (value.equals("liferay")) {
+			else if (value != null && value.equals("liferay")) {
 				return LIFERAY;
 			}
 
