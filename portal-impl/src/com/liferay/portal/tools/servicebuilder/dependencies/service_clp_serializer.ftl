@@ -87,6 +87,10 @@ public class ClpSerializer {
 	}
 
 	public static Object translateInput(BaseModel<?> oldModel) {
+		if (oldModel == null) {
+			return null;
+		}
+		
 		<#if entitiesHaveColumns>
 			Class<?> oldModelClass = oldModel.getClass();
 
@@ -105,6 +109,10 @@ public class ClpSerializer {
 	}
 
 	public static Object translateInput(List<Object> oldList) {
+		if (oldList == null) {
+			return null;
+		}
+		
 		List<Object> newList = new ArrayList<Object>(oldList.size());
 
 		for (int i = 0; i < oldList.size(); i++) {
@@ -119,6 +127,10 @@ public class ClpSerializer {
 	<#list entities as entity>
 		<#if entity.hasColumns()>
 			public static Object translateInput${entity.name}(BaseModel<?> oldModel) {
+				if (oldModel == null) {
+					return null;
+				}
+
 				${entity.name}Clp oldClpModel = (${entity.name}Clp)oldModel;
 
 				BaseModel<?> newModel = oldClpModel.get${entity.name}RemoteModel();
@@ -131,6 +143,10 @@ public class ClpSerializer {
 	</#list>
 
 	public static Object translateInput(Object obj) {
+		if (obj == null) {
+			return obj;
+		}
+			
 		if (obj instanceof BaseModel<?>) {
 			return translateInput((BaseModel<?>)obj);
 		}
@@ -143,6 +159,10 @@ public class ClpSerializer {
 	}
 
 	public static Object translateOutput(BaseModel<?> oldModel) {
+		if (oldModel == null) {
+			return oldModel;
+		}
+			
 		<#if entitiesHaveColumns>
 			Class<?> oldModelClass = oldModel.getClass();
 
@@ -161,6 +181,10 @@ public class ClpSerializer {
 	}
 
 	public static Object translateOutput(List<Object> oldList) {
+		if (oldList == null) {
+			return oldList;
+		}
+			
 		List<Object> newList = new ArrayList<Object>(oldList.size());
 
 		for (int i = 0; i < oldList.size(); i++) {
@@ -173,6 +197,10 @@ public class ClpSerializer {
 	}
 
 	public static Object translateOutput(Object obj) {
+		if (obj == null) {
+			return obj;
+		}
+			
 		if (obj instanceof BaseModel<?>) {
 			return translateOutput((BaseModel<?>)obj);
 		}
